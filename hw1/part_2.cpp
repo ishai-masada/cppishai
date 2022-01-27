@@ -15,7 +15,7 @@ int main()
     std::cout << "Result of 5 x 10 + 3: ";
     std::cout << 5 * 10 + 3 << endl;
 
-    std::cout << "Printing out the syntax 5 * 10 + 3: ";
+    std::cout << "Printing out the syntax \"5 * 10 + 3\": ";
     std::cout << "5 * 10 + 3" << endl;
 
     return 0;
