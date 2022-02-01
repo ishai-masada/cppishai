@@ -4,10 +4,12 @@
 #include <iostream>
 using namespace std;
 
+const float F_TO_C_FACTOR = 5.0 / 9.0;
+
 // Converts temperature from Celsius to Fahrenheit
 int f2c(int temp)
 {
-    return (temp - 32) * (5.0/9.0);
+    return (temp - 32) * (F_TO_C_FACTOR);
 }
 
 // Converts temperature from Fahrenheit to Celsius
@@ -20,18 +22,18 @@ int main()
 {
     // Initial Temperature
     int temperature = 55;
-    std::cout << "Temperature in Celsius: ";
-    std::cout << temperature << endl;
+    cout << "Temperature in Celsius: ";
+    cout << temperature << endl;
 
     // Celsius to Fahrenheit
-    std::cout << "Celsius to Fahrenheit: ";
+    cout << "Celsius to Fahrenheit: ";
     // The new temperature after it's been converted to Faherenheit
     int f_temp = c2f(temperature);
-    std::cout << f_temp << endl;
+    cout << f_temp << endl;
 
     // Fahrenheit to Celsius
-    std::cout << "Fahrenheit to Celsius: ";
+    cout << "Fahrenheit to Celsius: ";
     // The new temperature after it's been converted to Celsius
     int c_temp = f2c(f_temp);
-    std::cout << c_temp << endl;
+    cout << c_temp << endl;
 }
