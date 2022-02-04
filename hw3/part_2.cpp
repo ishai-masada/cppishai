@@ -1,18 +1,24 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 string main()
 {
     string super_premium = "Super Premium";
-    string premium = "Premium;
+    string premium = "Premium";
     string normal = "Normal Quality";
     string low_quality = "Not so great";
 
-    int percent_fat = cin >> "Type in the percent of fat in your dog food: "
-        >> endl;
-    int percent_protein = cin >> "Type in the percent of protein in your dog food: "
-        >> endl;
+    // Get the percent of fat in the user's dog food
+    int percent_fat;
+    cout << "Type in the percent of fat in your dog food: " >> endl;
+    cin >> percent_fat >> endl;
+
+    // Get the percent of protein in the user's dog food
+    int percent_protein;
+    cout << "Type in the percent of protein in your dog food: " >> endl;
+    cin >> percent_protein >> endl;
 
     if (percent_fat < 18 and percent_protein > 23)
     {
