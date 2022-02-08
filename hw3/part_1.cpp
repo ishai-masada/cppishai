@@ -31,7 +31,7 @@ int main()
     else
     {
         // Error code for dividing by zero
-        cout << endl << "You cannot divide any number by 0." << endl;
+        cout << endl << "You cannot divide any number by 0" << endl;
     }
 
     // Displays the difference of the two numbers
