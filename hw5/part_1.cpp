@@ -5,7 +5,10 @@
 
 using namespace std;
 
+// Initialize the numbers that will be used to calculate the average
 float num_1 = 0, num_2 = 0, num_3 = 0, num_4 = 0, num_5 = 0;
+
+// Initialize average of the five numbers
 float average = 0;
 
 void get_numbers()
@@ -25,6 +28,7 @@ void get_numbers()
 void calculate_average(float num_1, float num_2, float num_3, float num_4,
                         float num_5)
 {
+    // Calculate the average of the five numbers
     average = (num_1 + num_2 + num_3 + num_4 + num_5) / 5;
 }
 
@@ -35,8 +39,13 @@ void print_result(float average)
 
 int main()
 {
+    // Get the numbers for the calculations
     get_numbers();
+
+    // Calculate the average of the five numbers
     calculate_average(num_1, num_2, num_3, num_4, num_5);
+
+    // Print out the results of the calculations
     print_result(average);
 
     return 0;
