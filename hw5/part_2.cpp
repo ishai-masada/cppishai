@@ -34,6 +34,8 @@ void calculate_power(float num_1, float num_2)
 
 void print_result(float power)
 {
+    cout << "number 1: " << num_1 << endl;
+    cout << "number 2: " << num_2 << endl;
     cout << "The first number raised to the power of the second number: "
          << power << endl;
 }
