@@ -15,10 +15,11 @@ int main()
     // Get the second number from the user
     int second_num;
     cout << "Type in the second number: ";
+
     cin >> second_num;
 
     // Let's the user know how the numbers are used
-    cout << endl << "Each operation is always done using the first number before the second"
+    cout << "\nEach operation is always done using the first number before the second"
          << endl;
 
     // Checks if the division operation is divding by zero
