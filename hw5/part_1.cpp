@@ -35,11 +35,11 @@ void calculate_average(float num_1, float num_2, float num_3, float num_4,
 void print_result(float average)
 {
     cout << "number 1: " << num_1 << endl;
-    cout << endl << "number 2: " << num_2 << endl;
-    cout << endl << "number 3: " << num_3 << endl;
-    cout << endl << "number 4: " << num_4 << endl;
-    cout << endl << "number 5: " << num_5 << endl;
-    cout << endl << "Average of the five numbers: " << average << endl;
+    cout << "number 2: " << num_2 << endl;
+    cout << "number 3: " << num_3 << endl;
+    cout << "number 4: " << num_4 << endl;
+    cout << "number 5: " << num_5 << endl;
+    cout << "Average of the five numbers: " << average << endl;
 }
 
 int main()
