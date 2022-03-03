@@ -137,6 +137,7 @@ int main()
             if (hours > 24)
             {
                 cout << "The number of hours cannot exceed 24" << endl;
+                return 0;
             }
 
             break;
