@@ -1,0 +1,7 @@
+(Description)
+This program is supposed to use the idea that sunlight can affect your mood, specifically your "happiness". Given the
+amount of sunlight you are in, the program outputs what the expected serotonin levels are.
+
+(Tetsing)
+The code was tested by comparing the input to the output. The input was an integer, and a function determined the output
+based upon which range the input was in.
