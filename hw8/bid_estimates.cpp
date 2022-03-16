@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void get_sqr_ft(int& wall_sqr_ft, int& ceiling_sqr_ft)
+void get_sqr_ft(double& wall_sqr_ft, double& ceiling_sqr_ft)
 {
     // Get the square feet for the walls
     cout << "Type in the number of square feet for the walls: ";
@@ -15,10 +15,10 @@ void get_sqr_ft(int& wall_sqr_ft, int& ceiling_sqr_ft)
     return;
 }
 
-double calculate_painting_labor(int& wall_sqr_ft, int& ceiling_sqr_ft, double& total_labor)
+double calculate_painting_labor(double& wall_sqr_ft, double& ceiling_sqr_ft, double& total_labor)
 {
     // Dollars per hour for walls and ceilings
-    int dol_per_hr = 40;
+    double dol_per_hr = 40;
 
     // Hours per 200 Square Feet
     const float ceiling_hr_per_sqft = 3.2;
@@ -67,8 +67,8 @@ void painting_cost()
     double total_labor = 0;
 
     // Number of square feet
-    int wall_sqr_ft = 0;
-    int ceiling_sqr_ft = 0;
+    double wall_sqr_ft = 0;
+    double ceiling_sqr_ft = 0;
 
     // Get the number of square feet to paint
     get_sqr_ft(wall_sqr_ft, ceiling_sqr_ft);
@@ -82,11 +82,8 @@ void painting_cost()
     return;
 }
 
-string get_fm()
+string get_fm(string& floor_material)
 {
-    // Floor material
-    string floor_material;
-
     // Get the floor material
     cout << "Type in your floor\'s material (Wood, Tile, Other): ";
     cin >> floor_material;
@@ -94,7 +91,7 @@ string get_fm()
     return floor_material;
 }
 
-void get_sqft(int& sqft)
+void get_sqft(double& sqft)
 {
     // Get the number of square feet to replace
     cout << "Type in the number of square foot to replace: ";
@@ -103,7 +100,7 @@ void get_sqft(int& sqft)
     return;
 }
 
-double calculate_flooring_labor(double dol_per_hr, double hr_per_sqft, int sq_ft)
+double calculate_flooring_labor(double dol_per_hr, double hr_per_sqft, double sq_ft)
 {
     // Return the cost of replacing the flooring
     return (((sq_ft / 100) * hr_per_sqft) * dol_per_hr);
@@ -118,16 +115,18 @@ void flooring_cost()
     double dol_per_hr = 0;
 
     // Number of square feet
-    int sq_ft = 0;
+    double sq_ft = 0;
 
     // Floor material
-    string floor_material = get_fm();
+    string floor_material;
 
     // Hours per 100 Square Feet
     double hr_per_sqft = 0;
 
     while (true)
     {
+        floor_material = get_fm(floor_material);
+
         // Check if the floor material is wood
         if (floor_material == "Wood")
         {
@@ -156,7 +155,6 @@ void flooring_cost()
         /* invalid */
         cout << "Your input did not match \"Wood\", \"Tile\", or \"Other\"."
              << endl;
-        floor_material = get_fm();
     }
 
     // Get the square footage of the floors
@@ -174,24 +172,30 @@ int main()
 
     while (true)
     {
+        // User's choice
         string choice;
 
+        // Expense calculationg functions
         painting_cost();
         flooring_cost();
 
+        // Prompt the user to decide if they want to make more calculations
         cout << "Would you like to make more calculations? (\"Yes\" or \"No\"): ";
         cin >> choice;
 
+        // Check if the user's choice was Yes
         if (choice == "Yes")
         {
             continue;
         }
 
+        // Check if the user's choice was No
         if (choice == "No")
         {
             break;
         }
 
+        // Prompt the user again if their choice was invalid
         cout << "Your input was not valid" << endl;
     }
 
