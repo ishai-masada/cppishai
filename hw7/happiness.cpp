@@ -49,8 +49,12 @@ int happiness(int sunshine_level, int& serotonin_level)
 
 int main()
 {
+    // Amount of sunshine
     int sunshine_level = 0;
+
+    // Amount of serotonin
     int serotonin_level = 0;
+
     while (true)
     {
         // Get the amount of sunshine from the user
