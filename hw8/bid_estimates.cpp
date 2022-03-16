@@ -171,8 +171,29 @@ void flooring_cost()
 
 int main()
 {
-    painting_cost();
-    flooring_cost();
+
+    while (true)
+    {
+        string choice;
+
+        painting_cost();
+        flooring_cost();
+
+        cout << "Would you like to make more calculations? (\"Yes\" or \"No\"): ";
+        cin >> choice;
+
+        if (choice == "Yes")
+        {
+            continue;
+        }
+
+        if (choice == "No")
+        {
+            break;
+        }
+
+        cout << "Your input was not valid" << endl;
+    }
 
     return 0;
 }
