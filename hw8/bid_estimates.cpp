@@ -26,7 +26,10 @@ double calculate_painting_labor(int& wall_sqr_ft, int& ceiling_sqr_ft, double& t
     // Hours per 200 Square Feet
     const float wall_hr_per_sqft = 2.5;
 
+    // Number of hours to paint the walls
     double wall_hours = 0;
+
+    // Amount of dollars to paint the walls
     double wall_labor = 0;
 
     // Calculate the labor expenses to paint to walls
@@ -60,7 +63,10 @@ double calculate_painting_labor(int& wall_sqr_ft, int& ceiling_sqr_ft, double& t
 void painting_cost()
 {
 
+    // Total expenses for painting
     double total_labor = 0;
+
+    // Number of square feet
     int wall_sqr_ft = 0;
     int ceiling_sqr_ft = 0;
 
@@ -78,6 +84,7 @@ void painting_cost()
 
 string get_fm()
 {
+    // Floor material
     string floor_material;
 
     // Get the floor material
@@ -104,9 +111,16 @@ double calculate_flooring_labor(double dol_per_hr, double hr_per_sqft, int sq_ft
 
 void flooring_cost()
 {
+    // Total expenses for replacing the flooring
     double total_labor = 0;
+
+    // Dollars per hour
     double dol_per_hr = 0;
+
+    // Number of square feet
     int sq_ft = 0;
+
+    // Floor material
     string floor_material = get_fm();
 
     // Hours per 100 Square Feet
