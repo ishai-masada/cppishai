@@ -97,7 +97,7 @@ int main()
     // Close the file
     ostream.close();
 
-    // Initialize the Output stream with the data text file
+    // Initialize the Input stream with the data text file
     istream.open("data.txt");
 
     // Check if the file fails to open
