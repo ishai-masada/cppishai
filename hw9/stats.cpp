@@ -21,7 +21,7 @@ float avg(vector<int> scores)
     // Return the sum of the scores divided by the number of scores there are
     return sum / scores.size();
 }
-set
+
 // Calculates the variance of a sequence of values
 float var(vector<int> scores)
 {
