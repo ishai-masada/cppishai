@@ -8,70 +8,111 @@ bool is_number(string num)
 {
     for (int i; i < num.size(); i++)
     {
-        if (isdigit(num[i]))
+        if (isdigit(num[i]) == false)
         {
-            return true;
+            return false;
         }
     }
 
-    return false;
+    return true;
 }
 
-int get_animal_info(map<string, int>& animals, string& animal_name,
-                     int& animal_cost)
+bool make_purchase(string animal_name, int animal_cost, int& budget)
+{
+    if (budget - animal_cost > 0)
+    {
+        budget -= animal_cost;
+        cout << "You purchased a " << animal_name << "!" << endl;
+        cout << "Your budget now: " << budget << endl;
+
+        return true;
+    }
+
+    else
+    {
+        cout << "You cannot afford that animal" << endl;
+
+        return false;
+    }
+}
+
+map<string, int> purchase_animals(map<string, int> animals,
+                                  map<string, int> user_animals,
+                                  string& animal_name, int& animal_cost,
+                                  int& budget)
 {
     while (true)
     {
-        cout << "Type in the name of the animal or 0 to end the program: ";
+        cout << "Type in the name of the animal you want to buy or 0 to end the program: ";
         cin >> animal_name;
-        cout << animal_name << endl;
         if (is_number(animal_name))
         {
-            break;
+            if (animal_name == to_string(0))
+            {
+                return user_animals;
+            }
+
+            cout << "You can only enter letters" << endl;
+            continue;
         }
-        cout << "Type in the integer cost of the animal or 0 to end the program: ";
-        cin >> animal_cost;
-        cout << animal_cost << endl;
-        if (animal_cost == 0)
+
+        if (make_purchase(animal_name, animal_cost, budget))
         {
-            break;
+            auto iterator = animals.find(animal_name);
+            user_animals.insert({iterator->first, iterator->second});
         }
-        animals.insert({animal_name, animal_cost});
     }
 
-    /* for (auto iterator = animals.begin(); iterator != animals.end(); iterator++) */
-    /* { */
-    /*     cout << iterator->first; */
-    /*     cout << iterator->second; */
-    /* } */
-
-    return 0;
+    return user_animals;
 }
 
-int calculate_cost(map<string, int> animals)
+void display_animals(map<string, int> animals)
 {
-    int expenses = 0;
-    map<string, int>::iterator iterator = animals.begin();
-    while (iterator != animals.end())
+    if (animals.size() == 0)
     {
-        int cost = iterator->second;
-        expenses += cost;
+        cout << "(None)" << endl;
     }
-    return expenses;
+
+    else
+    {
+        for (auto iterator = animals.begin(); iterator != animals.end(); iterator++)
+        {
+            cout << "Name: " << iterator->first << " - " << "Cost: "
+                 << iterator->second << endl;
+        }
+    }
 }
 
 int main()
 {
-    map<string, int> animals;
-    int expenses = 0;
+    // Available animals to buy
+    map<string, int> animals = {
+        {"Tiger", 7500},
+        {"Lion", 15000},
+        {"Bear", 15000},
+        {"Monkey", 3500},
+        {"Giraffe", 60000},
+        {"Zebra", 4000},
+        {"Rhino", 27000},
+        {"Crocodile", 1100}
+    };
+
+    // User's animals
+    map<string, int> user_animals;
+
+    int budget = 4000;
     string animal_name;
-    int animal_cost;
-    get_animal_info(animals, animal_name, animal_cost);
+    int animal_cost = 0;
 
-    int age = 0;
+    cout << "Your budget: " << budget << endl;
 
-    expenses = calculate_cost(animals);
-    cout << "Final expenses of all of the animals: " << expenses << endl;
+    cout << "These are the animals you can buy: " << endl;
+    display_animals(animals);
+
+    cout << "Your animals: " << endl;
+    display_animals(user_animals);
+
+    animals = purchase_animals(animals, user_animals, animal_name, animal_cost, budget);
 
     return 0;
 }
