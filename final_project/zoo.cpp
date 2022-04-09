@@ -19,12 +19,13 @@ bool is_number(string num)
 
 bool make_purchase(string animal_name, int animal_cost, int& budget)
 {
-    if (budget - animal_cost > 0)
+    cout << endl << "animal cost: " << animal_cost << endl;
+    if (budget - animal_cost >= 0)
     {
         budget -= animal_cost;
         cout << "budget: " << budget << endl;
         cout << "You purchased a " << animal_name << "!" << endl;
-        cout << "Your budget now: " << budget << endl;
+        /* cout << "Your budget now: " << budget << endl; */
 
         return true;
     }
@@ -37,7 +38,7 @@ bool make_purchase(string animal_name, int animal_cost, int& budget)
     }
 }
 
-map<string, int> purchase_animals(map<string, int> animals,
+map<string, int> purchase_animals(map<string, int> available_animals,
                                   map<string, int> owned_animals,
                                   string& animal_name, int& animal_cost,
                                   int& budget)
@@ -63,11 +64,12 @@ map<string, int> purchase_animals(map<string, int> animals,
             }
         }
 
+        animal_cost = available_animals[animal_name];
         // Check if the user can afford the animal they want to purchase
         if (make_purchase(animal_name, animal_cost, budget))
         {
             // Store the animal into the user's owned animals
-            auto iterator = animals.find(animal_name);
+            auto iterator = available_animals.find(animal_name);
             owned_animals.insert({iterator->first, iterator->second});
         }
     }
