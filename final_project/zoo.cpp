@@ -1,8 +1,20 @@
 #include <iostream>
 #include <iterator>
 #include <map>
+#include <vector>
 
 using namespace std;
+
+const int TICKET_COST = 60;
+
+struct animal
+{
+    string name;
+    int cost = 0;
+
+    // Customers per day
+    int earning_rate = 0;
+};
 
 bool is_number(string num)
 {
@@ -25,7 +37,6 @@ bool make_purchase(string animal_name, int animal_cost, int& budget)
         budget -= animal_cost;
         cout << "budget: " << budget << endl;
         cout << "You purchased a " << animal_name << "!" << endl;
-        /* cout << "Your budget now: " << budget << endl; */
 
         return true;
     }
@@ -38,8 +49,9 @@ bool make_purchase(string animal_name, int animal_cost, int& budget)
     }
 }
 
-map<string, int> purchase_animals(map<string, int> available_animals,
-                                  map<string, int> owned_animals,
+// TODO Fix the map -> vector/struct change
+vector<animal> purchase_animals(vector<animal> available_animals,
+                                  vector<animal> owned_animals,
                                   string& animal_name, int& animal_cost,
                                   int& budget)
 {
@@ -64,7 +76,14 @@ map<string, int> purchase_animals(map<string, int> available_animals,
             }
         }
 
-        animal_cost = available_animals[animal_name];
+        for (int i = 0; i < available_animals.size(); i++)
+        {
+            if (animal_name == available_animals[i].name)
+            {
+                animal_cost = available_animals[i].cost;
+            }
+        }
+
         // Check if the user can afford the animal they want to purchase
         if (make_purchase(animal_name, animal_cost, budget))
         {
@@ -77,7 +96,7 @@ map<string, int> purchase_animals(map<string, int> available_animals,
     return owned_animals;
 }
 
-void display_animals(map<string, int> animals)
+void display_animals(vector<animal> animals)
 {
     if (animals.size() == 0)
     {
@@ -96,19 +115,34 @@ void display_animals(map<string, int> animals)
 int main()
 {
     // Available animals to buy
-    map<string, int> animals = {
-        {"Tiger", 7500},
-        {"Lion", 15000},
-        {"Bear", 15000},
-        {"Monkey", 3500},
-        {"Giraffe", 60000},
-        {"Zebra", 4000},
-        {"Rhino", 27000},
-        {"Crocodile", 1100}
+    /* map<string, int> available_animals = { */
+    /*     {"Tiger", 7500}, */
+    /*     {"Lion", 15000}, */
+    /*     {"Bear", 15000}, */
+    /*     {"Monkey", 3500}, */
+    /*     {"Giraffe", 60000}, */
+    /*     {"Zebra", 4000}, */
+    /*     {"Rhino", 27000}, */
+    /*     {"Crocodile", 1100} */
+    /* }; */
+
+    // Available animals to buy
+    vector<animal> available_animals = {
+        {"Tiger", 7500, 50},
+        {"Lion", 15000, 50},
+        {"Bear", 15000, 50},
+        {"Monkey", 3500, 50},
+        {"Giraffe", 60000, 50},
+        {"Zebra", 4000, 50},
+        {"Rhino", 27000, 50},
+        {"Crocodile", 1100, 50}
     };
 
+    /* // User's animals */
+    /* map<string, int> owned_animals; */
+
     // User's animals
-    map<string, int> owned_animals;
+    vector<animal> owned_animals;
 
     int budget = 4000;
     string animal_name;
@@ -117,12 +151,12 @@ int main()
     cout << "Your budget: " << budget << endl;
 
     cout << "These are the animals you can buy: " << endl;
-    display_animals(animals);
+    display_animals(available_animals);
 
     cout << endl << "Your animals: " << endl;
     display_animals(owned_animals);
 
-    animals = purchase_animals(animals, owned_animals, animal_name, animal_cost, budget);
+    animals = purchase_animals(available_animals, owned_animals, animal_name, animal_cost, budget);
 
     return 0;
 }
