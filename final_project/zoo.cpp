@@ -26,7 +26,7 @@ public:
 
     float get_earning_rate()
     {
-        // Customers per day
+        // Number of customers per day
         float earning_rate = cost / TICKET_COST;
 
         return earning_rate;
