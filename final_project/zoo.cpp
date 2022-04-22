@@ -55,7 +55,7 @@ bool is_number(string num)
 }
 
 // Checks if the user can afford to purchase the desired animal
-bool make_purchase(Animal desired_animal, int budget)
+bool make_purchase(Animal desired_animal, int& budget)
 {
     // Checks if the user has enough funds to purchase the desired animal
     if (budget - desired_animal.cost >= 0)
@@ -76,7 +76,6 @@ bool make_purchase(Animal desired_animal, int budget)
         return false;
     }
 }
-
 
 // Zoo Class
 class Zoo
@@ -164,6 +163,7 @@ public:
                 }
             }
 
+            // Checks if the user entered an available animal
             if (is_valid == false)
             {
                 cout << "Your input was invalid" << endl;
@@ -205,9 +205,11 @@ public:
     }
 
     // Calculates the total earnings for the day
-    void calculate_earnings(int& budget, float& daily_earnings)
+    void calculate_earnings(int& budget, float& daily_earnings,
+                            float& number_of_customers)
     {
         daily_earnings = 0;
+        number_of_customers = 0;
 
         // Iterates over the user's animals
         for (int i = 0; i < owned_animals.size(); i++)
@@ -215,6 +217,8 @@ public:
             // Increments the earnings by the amount the animal earned
             daily_earnings += owned_animals[i].get_earnings();
         }
+
+        number_of_customers = daily_earnings / TICKET_COST;
 
         // Increments the budget by the amount the Zoo earned
         budget += daily_earnings;
@@ -256,20 +260,24 @@ public:
     }
 };
 
+// Displays how much the user earned in profit
 void display_profits(int budget)
 {
     int profit = budget - INITIAL_BUDGET;
 
+    // Checks if user made a profit
     if (profit > 0)
     {
         cout << "You earned $" << profit << " in profits!" << endl;
     }
 
+    // Checks if the user lost money
     else if (profit < 0)
     {
         cout << "You lost $" << profit * -1 << "!" << endl;
     }
 
+    // Checks if the user is at the same place they started
     else if (profit = 0)
     {
         cout << "You earned zero profit!" << endl;
@@ -285,7 +293,10 @@ int main()
     Zoo zoo("Vermont Zoo", owned_animals);
 
     int budget = INITIAL_BUDGET;
+
+    // How much the user earns a day
     float daily_earnings = 0;
+    float number_of_customers = 0;
 
     // Iterates 7 times
     for (int i = 0; i < 7; i++)
@@ -299,12 +310,14 @@ int main()
         zoo.purchase_animals(budget);
 
         // Calculates how much the user has earned that day
-        zoo.calculate_earnings(budget, daily_earnings);
+        zoo.calculate_earnings(budget, daily_earnings, number_of_customers);
 
-        cout << "Your earnings this week: " << daily_earnings << endl;
+        cout << "Your earnings of the day: " << daily_earnings << endl;
+        cout << "Number of customers: " << number_of_customers << endl;
         cout << "Total budget: " << budget << endl;
     }
 
+    // Display the user's profits
     display_profits(budget);
 
     return 0;
