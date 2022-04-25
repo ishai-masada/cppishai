@@ -116,6 +116,7 @@ public:
     // Allows the user to purchase animals for their zoo
     void purchase_animals(int budget)
     {
+        // Variable to store the name of the desired animal from the user
         string animal_name;
 
         // Template variable of Animal class type
