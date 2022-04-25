@@ -95,7 +95,6 @@ public:
         Animal("Giraffe", 60000, 0),
         Animal("Zebra", 4000, 0),
         Animal("Rhino", 27000, 0),
-        Animal("Crocodile", 1100, 0),
         Animal("Rhino", 27000, 0),
         Animal("Crocodile", 1100, 0),
         Animal("Whale Shark", 500000, 0),
